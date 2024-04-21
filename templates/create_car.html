@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body style="background-image:url('/media/website_images/add.jpg'); background-size:cover;">
+<form style="padding-left:400px;padding-top:50px;" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div>
+            <div style="display:flex;gap:160px;" class="form-group">
+                <div style="color:white;">
+                    <input style="width:350px;" class="form-control" placeholder="Enter car name " name="car_name" type="text">
+                </div>
+                <div>
+                    <select class="form-control" style="width:400px;" name="car_manufacturer">
+                        {% if manufacturer %}
+                            {% for m in manufacturer %}
+                                <option value="{{ m.pk }}">{{ m.manufacturer_name }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display:flex;" class="form-group">
+                <div style="color:white;">
+                    <input type="number" class="form-control" name="car_year" placeholder="Enter car year">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display:flex;gap:302px;" class="form-group">
+                <div style="color:white;">
+                    <input type="number" class="form-control" placeholder="Enter the km " name="km">
+                </div>
+                <div>
+                    <select name="car_fuel" style="width:400px;" class="form-control">
+                        <option value="Petrol">Petrol</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Gas and Petrol">Gas and Petrol</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display:flex; gap:302px;" class="form-group">
+                <div style="color:white;">
+                    <input type="text" class="form-control" placeholder="Enter your car number " name="car_number">
+                </div>
+                <div>
+                    <select name="car_gearbox" style="width:400px;" class="form-control">
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                        <option value="Automated Manual Transmission">Automated Manual Transmission</option>
+                        <option value="Continuously Variable Transmission">Continuously Variable Transmission</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display:flex;gap:302px;" class="form-group">
+                <div style="color:white;">
+                    <input type="number" class="form-control" placeholder="Enter the car price " name="car_price">
+                </div>
+                <div>
+                    <input type="text" class="form-control" name="car_color" placeholder="Enter the car color">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display:flex;gap:228px;" class="form-group">
+                <div style="color:white;">
+                    <input type="text" class="form-control" placeholder="Where was made your car" name="made_in">
+                </div>
+                <div>
+                    <input  type="file" class="form-control" name="car_image" style="margin-left:73px;">
+                </div>
+            </div>
+        </div>
+    <div>
+        <textarea style="width:900px;font-size:25px;" rows="8" placeholder="Enter car description" class="form-control"  name="car_description"></textarea>
+    </div>
+    <div style="margin-top:20px;" class="btn btn-primary">
+        <button style="width:875px;" class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>

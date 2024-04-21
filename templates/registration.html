@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-image: url('/media/website_images/lambo.jpg'); background-position:
+ center center; background-size: cover; height: 100vh; margin: 0;">
+<div style="width:450px;height:20px;margin-left:1100px;padding-top:60px;"><h4 style="color:white;font-size:20px;">Already have an account <a href="{% url 'login' %}" style="color:white;font-size:20px;">Login</a></h4>  </div>
+<div class="form__group" style="display: flex; justify-content: center; align-items: center;padding-top:200px;">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.errors }}
+    <div>
+      <label class="form-label" style="color:white;">Username</label>
+      <input type="text" class="form-control" name="username" id="id_fullname" placeholder="Enter your fullname" required="" />
+    </div>
+
+    <div>
+      <label for="id_phone_number" class="form__label" style="color:white;">Phone number</label>
+      <input type="text" class="form-control" name="phone_number" id="id_phone_number" placeholder="Enter your phone number" required="" />
+    </div>
+
+    <div>
+      <label for="id_password1" class="form__label" style="color:white;">Password</label>
+      <input type="password" class="form-control" name="password1" id="id_password1" placeholder="Enter your password" required="" />
+    </div>
+
+    <div>
+      <label for="id_password2" class="form__label" style="color:white;">Confirm password</label>
+      <input type="password" class="form-control" name="password2" id="id_password2" placeholder="Confirm your password" required="" />
+    </div>
+    <br>
+    <button class="btn btn-primary btn-block mb-4" type="submit"> Submit</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+{%load static%}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>PHPJabbers.com | Free Car Dealer Website Template</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{%static 'bootstrapcars-details/css/bootstrap.min.css'%}" />
+		<link rel="stylesheet" href="{%static 'csscars-details/main.css'%}" />
+		<noscript><link rel="stylesheet" href="{% static 'csscars-details/noscript.css'%}" /></noscript>
+	</head>
+	<body class="is-preload">
+				<!-- Main -->
+					<div id="main" class="alt" style="margin-top:-50px;">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<a class="navbar-brand" style="font-size:50px;" href="cars.html">سيارتي</span></a>
+									</header>
+									{% if car %}
+									<div class="row">
+										<div class="col-md-6">
+
+											<img src="{{car.car_image.url}}" class="img-responsive" alt="">
+										</div>
+
+										<div class="col-md-6" style="display:flex;justify-content:space-between;">
+											<div style="display:flex; justify-content:space-between;">
+												<h3 class="carPrice" style="margin-right:50px;">${{ car.car_price }}</h3>
+    											<h3 class="convertedPrice"></h3>
+											</div>
+										</div>
+									</div>
+									<script>
+// Wait for the DOM content to be loaded before running the conversion function
+document.addEventListener("DOMContentLoaded", function() {
+    // Select all elements with the 'carPrice' class
+    var carPriceElements = document.querySelectorAll('.carPrice');
+
+    // Fetch conversion rate from USD to UZS
+    fetch('https://cbu.uz/ru/arkhiv-kursov-valyut/json/USD/')
+    .then(response => response.json())
+    .then(data => {
+        // Get the conversion rate from USD to UZS
+        var usdToUzsRate = data[0].Rate;
+
+        // Iterate over each element
+        carPriceElements.forEach(function(element) {
+            // Get the car price in USD
+            var carPriceUSD = parseFloat(element.innerText.replace(/[^0-9.]/g, ''));
+
+            // Select the corresponding 'convertedPrice' element
+            var convertedPriceElement = element.nextElementSibling;
+
+            // Convert car price from USD to UZS and display the converted price
+            var carPriceUZS = carPriceUSD * usdToUzsRate;
+            convertedPriceElement.innerText += carPriceUZS.toFixed(2) + " UZS";
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching conversion rates:', error);
+    });
+});
+</script>
+
+									<br>
+
+									<form action="#">
+										<div class="fields">
+											<div class="field quarter">
+							                    <label>Car name</label>
+							                     
+							                    <h4>{{car.car_name}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>Make</label>
+							                     
+							                    <h4>{{car.made_in}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>Car year </label>
+							                     
+							                    <h4>{{car.car_year}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>Fuel</label>
+							                     
+							                    <h4>{{car.car_fuel}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>Gearbox</label>
+							                     
+							                    <h4>{{car.car_gearbox}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>Car number </label>
+							                     
+							                    <h4>{{car.car_number}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>KM</label>
+							                     
+							                    <h4>{{car.km}}</h4>
+							                </div>
+
+							                <div class="field quarter">
+							                    <label>Color</label>
+							                     
+							                    <h4>{{car.car_color}}</h4>
+							                </div>
+										</div>
+									</form>
+								</div>
+								{%endif%}
+							</section>
+
+							<section id="contact">
+								{%if car %}
+								<div class="inner">
+									<section>
+										<header class="major">
+											<h2>Vehicle Description</h2>
+										</header>
+
+										<p>{{car.car_description}}</p>
+									</section>
+
+
+									<section class="split">
+										<section>
+											<div class="contact-method">
+												<span class="icon alt fa-user"></span>
+												<h3>Name</h3>
+												<span>{{car.car_user.username}}</span>
+											</div>
+										</section>
+
+										<section>
+											<div class="contact-method">
+												<span class="icon alt fa-phone"></span>
+												<h3>Phone</h3>
+												<span>{{car.car_user.phone_number}}</span>
+											</div>
+										</section>
+									</section>
+								</div>
+							{%endif%}
+							</section>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'jscars-details/jquery.min.js'%}"></script>
+			<script src="{% static 'bootstrapcars-details/js/bootstrap.bundle.min.js'%}"></script>
+			<script src="{% static 'jscars-details/jquery.scrolly.min.js'%}"></script>
+			<script src="{% static 'jscars-details/jquery.scrollex.min.js'%}"></script>
+			<script src="{% static 'jscars-details/browser.min.js'%}"></script>
+			<script src="{% static 'jscars-details/breakpoints.min.js'%}"></script>
+			<script src="{% static 'jscars-details/util.js'%}"></script>
+			<script src="{% static 'jscars-details/main.js'%}"></script>
+
+	</body>
+</html>

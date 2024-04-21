@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Search</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static '/bootstrapcars-details/css/bootstrap.min.css'%}" />
+		<link rel="stylesheet" href="{% static '/csscars-details/main.css'%}" />
+		<noscript><link rel="stylesheet" href="{% static '/csscars-details/noscript.css'%}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main" class="alt">
+
+							<!-- Featured Cars -->
+							<section class="tiles">
+								{% for i in search %}
+								<article>
+									<span class="image">
+										<img src="{{i.car_image.url}}" alt="" />
+									</span>
+									
+									<header class="major">
+										<p>
+											<i class="fa fa-cog"></i> {{i.car_gearbox}}
+										</p>
+
+										<h4 class="car_description">{{i.car_description}}</h4>
+
+										<div class="major-actions">
+											<a href="/car-details/{{i.pk}}" class="button small next">View Car</a>
+										</div>
+									</header>
+								</article>
+								{% endfor %}
+								<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var descriptionElements = document.querySelectorAll('.car_description');
+        var maxLength = 85;
+        descriptionElements.forEach(function(descriptionElement) {
+            if (descriptionElement.textContent.length > maxLength) {
+                descriptionElement.textContent = descriptionElement.textContent.substring(0, maxLength) + '...';
+            }
+        });
+    });
+</script>
+
+								{%if brands %}
+								{% for i in brands %}
+								<article>
+									<span class="image">
+										<img src="{{i.car_image.url}}" alt="" />
+									</span>
+
+									<header class="major">
+										<p>
+											<i class="fa fa-cog"></i> {{i.car_gearbox}}
+										</p>
+
+										<h4 class="car_description">{{i.car_description}}</h4>
+
+										<div class="major-actions">
+											<a href="/car-details/{{i.pk}}" class="button small next">View Car</a>
+										</div>
+									</header>
+								</article>
+								{% endfor %}
+								<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var descriptionElements = document.querySelectorAll('.car_description');
+        var maxLength = 85;
+        descriptionElements.forEach(function(descriptionElement) {
+            if (descriptionElement.textContent.length > maxLength) {
+                descriptionElement.textContent = descriptionElement.textContent.substring(0, maxLength) + '...';
+            }
+        });
+    });
+								</script>
+								{%endif%}
+							</section>
+
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static '/jscar-details/jquery.min.js'%}"></script>
+			<script src="{% static '/bootstrapcars-details/js/bootstrap.bundle.min.js'%}"></script>
+			<script src="{% static '/jscar-details/jquery.scrolly.min.js'%}"></script>
+			<script src="{% static '/jscar-details/jquery.scrollex.min.js'%}"></script>
+			<script src="{% static '/jscar-details/browser.min.js'%}"></script>
+			<script src="{% static '/jscar-details/breakpoints.min.js'%}"></script>
+			<script src="{% static '/jscar-details/util.js'%}"></script>
+			<script src="{% static '/jscar-details/main.js'%}"></script>
+
+	</body>
+</html>
